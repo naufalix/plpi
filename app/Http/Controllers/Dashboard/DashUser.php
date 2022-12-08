@@ -8,20 +8,21 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redirect;
 
 class DashUser extends Controller
 {
 
-    public function role(){
+    public function previlege($p){
         $auth = Auth::guard('user')->user();
-        if($auth->role!='superadmin'){
-            return Redirect::back()->with("info","Anda tidak punya akses");
-        }
+        $previlege = explode(",",$auth->previlege);
+        if(!in_array($p, $previlege)){ return false; }
+        return true;
     }
-
+    
     public function index(){
-        $this->role();
+        if(!$this->previlege(6)){
+            return redirect('/dashboard/home')->with("info","Anda tidak punya akses");
+        }
         $meta = Meta::$data_meta;
         $meta['title'] = 'Dashboard | User';
         return view('dashboard.user',[
@@ -32,7 +33,7 @@ class DashUser extends Controller
     }
 
     public function postHandler(Request $request){
-        $this->role();
+        $this->previlege(6);
         if($request->submit=="store"){
             $res = $this->store($request);
             return redirect('/dashboard/user')->with($res['status'],$res['message']);
@@ -57,26 +58,27 @@ class DashUser extends Controller
     public function store(Request $request){
         $validatedData = $request->validate([
             'name'=>'required',
-            'username' => 'required',
             'email' => 'required',
             'password' => 'required',
-            'role'=>'required',
-            'province_id'=>'required|numeric',
+            'phone' => 'required',
+            'address' => 'required',
+            'status' => 'required',
+            'birthday' => 'required',
+            'start_date'=>'required',
+            'end_date'=>'required',
+            'previlege'=>'required',
         ]);
         $validatedData['password'] = Hash::make($validatedData['password']);
+        $validatedData['previlege'] = implode(",",$validatedData['previlege']);
+        //dd($validatedData);
 
-        // Check Username
-        if(!User::whereUsername($request->username)->first()){
-            // Check Email
-            if(!User::whereEmail($request->email)->first()){
-                // Create new user
-                User::create($validatedData);
-                return ['status'=>'success','message'=>'User berhasil ditambahkan'];
-            }else{
-                return ['status'=>'error','message'=>'Email telah terpakai'];
-            }
+        // Check Email
+        if(!User::whereEmail($request->email)->first()){
+            // Create new user
+            User::create($validatedData);
+            return ['status'=>'success','message'=>'User berhasil ditambahkan'];
         }else{
-            return ['status'=>'error','message'=>'Username telah terpakai'];
+            return ['status'=>'error','message'=>'Email telah terpakai'];
         }
     }
 
@@ -84,23 +86,36 @@ class DashUser extends Controller
         $validatedData = $request->validate([
             'id'=>'required|numeric',
             'name'=>'required',
-            'username' => 'required',
             'email' => 'required',
-            'role'=>'required',
-            'province_id'=>'required|numeric',
+            'phone' => 'required',
+            'address' => 'required',
+            'status' => 'required',
+            'birthday' => 'required',
+            'start_date'=>'required',
+            'end_date'=>'required',
+            'previlege'=>'required',
         ]);
+        $validatedData['previlege'] = implode(",",$validatedData['previlege']);
 
         $user = User::find($request->id);
-
+        $oldEmail = $user->email;
+        $newEmail = $request->email;
+        
         //Check if password empty
         if(!$request->password){
             $validatedData['password'] = $user->password;
         }else{
             $validatedData['password'] = Hash::make($request->password);
         }
-
+        
         //Check if the user is found
         if($user){
+            //Check email
+            if($newEmail!=$oldEmail){
+                if(User::whereEmail($request->email)->first()){
+                    return ['status'=>'error','message'=>'Email telah terpakai'];
+                }
+            }
             // Update user
             $user->update($validatedData);   
             return ['status'=>'success','message'=>'User berhasil diedit']; 

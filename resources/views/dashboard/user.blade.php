@@ -15,15 +15,20 @@
       <thead>
         <tr class="fw-bold fs-6 text-gray-800 border-bottom border-gray-200">
           <th>No</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Role</th>
+          <th>Nama</th>
+          <th>No HP</th>
+          <th>Tanggal selesai</th>
+          <th>Status</th>
+          <th>Hak akses</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <?php
           foreach($users as $user) {
+            $previlege = explode(",",$user->previlege);
+            $end_date = date_create($user->end_date);
+            
             $photo       = $user->photo;
             if (empty($photo)) {$photo="default.png";}
         ?>
@@ -35,9 +40,17 @@
             </div>
             {{ $user->name }}  
           </td>
-          <td>{{ $user->email }}</td>
+          <td>{{ $user->phone }}</td>
+          <td>{{ date_format($end_date,"d M Y") }}</td>
+          <td>
+            @if ($user->status=="active")
+              <span class="badge badge-primary">{{ $user->status }}</span>
+            @else
+              <span class="badge badge-dark">{{ $user->status }}</span>    
+            @endif
+          </td>
           <td style="min-width: 100px;">
-            <span class="badge badge-primary">{{ $user->role }}</span>
+            <span class="badge badge-success">{{ str_replace(",",", ",$user->previlege) }}</span>
           </td>
           <td style="min-width: 100px;">
             <a href="#" class="btn btn-icon btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#edit" onclick="edit({{ $user->id }})"><i class="bi bi-pencil-fill"></i></a>
@@ -66,40 +79,62 @@
           @csrf
           <div class="modal-body">
             <div class="row g-9 mb-8">
-              <div class="col-12 col-md-6">
+              <div class="col-12 col-md-4">
                 <label class="required fw-bold mb-2">Nama</label>
                 <input type="text" class="form-control form-control-solid" id="name" name="name" required>
               </div>
-              <div class="col-6 col-md-3">
-                <label class="required fw-bold mb-2">Role</label>
-                <select class="form-select form-select-solid" name="role" tabindex="-1" aria-hidden="true" required>
-                  <option value="admin">Admin</option>
-                  <option value="superadmin">Superadmin</option>
-                  <option value="user">User</option>
-                </select>
+              <div class="col-12 col-md-4">
+                <label class="required fw-bold mb-2">Email</label>
+                <input type="email" class="form-control form-control-solid" id="email" name="email" required>
               </div>
-              <div class="col-6 col-md-3">
-                <label class="required fw-bold mb-2">Provinsi</label>
-                <select class="form-select form-select-solid" id="tpv" name="province_id" tabindex="-1" aria-hidden="true" required>
-                  @foreach ($provinces as $province)
-                    <option value='{{$province->id}}'>{{ucwords(strtolower($province->name))}}</option>
-                  @endforeach
+              <div class="col-12 col-md-4">
+                <label class="required fw-bold mb-2">Password</label>
+                <input type="password" class="form-control form-control-solid" id="password" name="password" required>
+              </div>
+            </div>
+            <div class="row g-9 mb-8">
+              <div class="col-12 col-md-3">
+                <label class="required fw-bold mb-2">No HP</label>
+                <input type="text" class="form-control form-control-solid" id="phone" name="phone" required>
+              </div>
+              <div class="col-12 col-md-7">
+                <label class="fw-bold mb-2">Alamat</label>
+                <input type="text" class="form-control form-control-solid" id="address" name="address" required>
+              </div>
+              <div class="col-12 col-md-2">
+                <label class="required fw-bold mb-2">Status</label>
+                <select class="form-select form-select-solid" name="status" tabindex="-1" aria-hidden="true" required>
+                  <option value="active">Aktif</option>
+                  <option value="nonactive">Non aktif</option>
                 </select>
               </div>
             </div>
             <div class="row g-9 mb-8">
-              <div class="col-12 col-md-4">
-                <label class="required fw-bold mb-2">Username</label>
-                <input type="text" class="form-control form-control-solid" id="username" name="username" required>
+              <div class="col-4">
+                <label class="required fw-bold mb-2">Tanggal lahir</label>
+                <input type="date" class="form-control" id="birthday" name="birthday" required>
               </div>
-              <div class="col-12 col-md-4">
-                <label class="fw-bold mb-2">Email</label>
-                <input type="email" class="form-control form-control-solid" id="email" name="email" required>
+              <div class="col-4">
+                <label class="required fw-bold mb-2">Tanggal mulai</label>
+                <input type="date" class="form-control" id="start_date" name="start_date" required>
               </div>
-              <div class="col-12 col-md-4">
-                <label class="fw-bold mb-2">Password</label>
-                <input type="password" class="form-control form-control-solid" id="password" name="password" required>
+              <div class="col-4">
+                <label class="required fw-bold mb-2">Tanggal selesai</label>
+                <input type="date" class="form-control" id="end_date" name="end_date" required>
               </div>
+            </div>
+            <div class="row g-9 mb-8">
+              <label class="required fw-bold mb-2">Hak akses</label>
+              <br>
+              @php
+                $prev = ['A','B',1,2,3,4,5,6];
+              @endphp
+              @foreach ($prev as $p)
+                <div class="col-4 col-md-3 mt-0">
+                  <input class="" type="checkbox" id="p{{$p}}" name="previlege[]" value="{{$p}}" @if($p=="A") checked @endif>
+                  <label for="p{{$p}}"> {{$p}}</label>
+                </div>
+              @endforeach
             </div>
           </div>
           <div class="modal-footer">
@@ -125,41 +160,63 @@
           <input type="hidden" class="d-none" id="eid" name="id">
           <div class="modal-body">
             <div class="row g-9 mb-8">
-              <div class="col-12 col-md-6">
+              <div class="col-12 col-md-4">
                 <label class="required fw-bold mb-2">Nama</label>
                 <input type="text" class="form-control form-control-solid" id="enm" name="name" required>
               </div>
-              <div class="col-6 col-md-3">
-                <label class="required fw-bold mb-2">Role</label>
-                <select class="form-select form-select-solid" id="erl" name="role" tabindex="-1" aria-hidden="true" required>
-                  <option value="admin">Admin</option>
-                  <option value="superadmin">Superadmin</option>
-                  <option value="user">User</option>
-                </select>
+              <div class="col-12 col-md-4">
+                <label class="required fw-bold mb-2">Email</label>
+                <input type="text" class="form-control form-control-solid" id="eml" name="email" required>
               </div>
-              <div class="col-6 col-md-3">
-                <label class="required fw-bold mb-2">Provinsi</label>
-                <select class="form-select form-select-solid" id="epv" name="province_id" tabindex="-1" aria-hidden="true" required>
-                  @foreach ($provinces as $province)
-                    <option value='{{$province->id}}'>{{ucwords(strtolower($province->name))}}</option>
-                  @endforeach
-                </select>
+              <div class="col-12 col-md-4">
+                <label class="required fw-bold mb-2">Password</label>
+                <input type="text" class="form-control form-control-solid" id="eps" name="password">
+                <small class="text-danger">Kosongkan jika tidak ingin mengganti password</small>
               </div>
             </div>
             <div class="row g-9 mb-8">
               <div class="col-12 col-md-3">
-                <label class="required fw-bold mb-2">Username</label>
-                <input type="text" class="form-control form-control-solid" id="eun" name="username" required>
+                <label class="required fw-bold mb-2">No HP</label>
+                <input type="text" class="form-control form-control-solid" id="eph" name="phone" required>
               </div>
-              <div class="col-12 col-md-4">
-                <label class="fw-bold mb-2">Email</label>
-                <input type="email" class="form-control form-control-solid" id="eml" name="email" required>
+              <div class="col-12 col-md-7">
+                <label class="fw-bold mb-2">Alamat</label>
+                <input type="text" class="form-control form-control-solid" id="ead" name="address" required>
               </div>
-              <div class="col-12 col-md-5">
-                <label class="fw-bold mb-2">Password</label>
-                <input type="password" class="form-control form-control-solid" id="eps" name="password">
-                <small class="text-danger">Kosongkan jika tidak ingin mengganti password</small>
+              <div class="col-12 col-md-2">
+                <label class="required fw-bold mb-2">Status</label>
+                <select class="form-select form-select-solid" id="est" name="status" tabindex="-1" aria-hidden="true" required>
+                  <option value="active">Aktif</option>
+                  <option value="nonactive">Non aktif</option>
+                </select>
               </div>
+            </div>
+            <div class="row g-9 mb-8">
+              <div class="col-4">
+                <label class="required fw-bold mb-2">Tanggal lahir</label>
+                <input type="date" class="form-control" id="ebd" name="birthday" required>
+              </div>
+              <div class="col-4">
+                <label class="required fw-bold mb-2">Tanggal mulai</label>
+                <input type="date" class="form-control" id="esd" name="start_date" required>
+              </div>
+              <div class="col-4">
+                <label class="required fw-bold mb-2">Tanggal selesai</label>
+                <input type="date" class="form-control" id="eed" name="end_date" required>
+              </div>
+            </div>
+            <div class="row g-9 mb-8">
+              <label class="required fw-bold mb-2">Hak akses</label>
+              <br>
+              @php
+                $prev = ['A','B',1,2,3,4,5,6];
+              @endphp
+              @foreach ($prev as $p)
+                <div class="col-4 col-md-3 mt-0">
+                  <input class="epv" type="checkbox" id="ep{{$p}}" name="previlege[]" value="{{$p}}">
+                  <label for="ep{{$p}}"> {{$p}}</label>
+                </div>
+              @endforeach
             </div>
           </div>
           <div class="modal-footer">
@@ -237,13 +294,27 @@
       success: function(mydata) {
         $("#eid").val(id);
         $("#enm").val(mydata.name);
-        $("#erl").val(mydata.role);
-        $("#epv").val(mydata.province_id);
-        $("#eun").val(mydata.username);
         $("#eml").val(mydata.email);
-        $("#eps").val("");
+        $("#eph").val(mydata.phone);
+        $("#ead").val(mydata.address);
+        $("#est").val(mydata.status);
+        $("#ebd").val(mydata.birthday);
+        $("#esd").val(mydata.start_date);
+        $("#eed").val(mydata.end_date);
+        //Clear all checked
+        $(".epv").each(function(){
+          $(this).prop( "checked",false)
+        });
+        //Set checked
+        pvs = mydata.previlege.split(",");
+        for (let i = 0; i < pvs.length; i++) {
+          $(".epv").each(function(){
+            if($(this).val()==pvs[i]){
+              $(this).prop( "checked",true)
+            }
+          });
+        }
         $("#eti").text("Edit "+mydata.name);
-        $('#epv').select2({  dropdownParent: $("#edit")  });
       }
     });
   }
