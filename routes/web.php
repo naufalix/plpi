@@ -5,6 +5,7 @@ use App\Http\Controllers\APIController;
 // use App\Http\Controllers\HomeController;
 //use App\Http\Controllers\Admin\AdminDashboard;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Dashboard\DashCareer;
 use App\Http\Controllers\Dashboard\DashHome;
 use App\Http\Controllers\Dashboard\DashUser;
 
@@ -32,7 +33,10 @@ Route::get('/dashboard/logout', [AuthController::class, 'logout']);
 Route::group(['prefix'=> 'dashboard','middleware'=>['auth:user']], function(){
     Route::get('/', [DashHome::class, 'index']);
     Route::get('/home', [DashHome::class, 'index']);
+    Route::get('/career', [DashCareer::class, 'index']);
     Route::get('/user', [DashUser::class, 'index']);
+    
+    Route::post('/career', [DashCareer::class, 'postHandler']);
     Route::post('/user', [DashUser::class, 'postHandler']);
 });
 

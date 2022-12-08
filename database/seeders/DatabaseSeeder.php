@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Province;
+use App\Models\Career;
 use App\Models\User;
 use File;
 use Illuminate\Database\Seeder;
@@ -24,22 +25,6 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        // $users = [
-        //     [
-        //         'province_id'=>35,
-        //         'name'=>'Naufal Ulinnuha',
-        //         'username'=>'naufal',
-        //         'email'=>'admin@naufal.dev',
-        //         'role'=>'superadmin',
-        //         'password'=> bcrypt('admin'),
-        //         'photo'=>'1.png',
-        //     ],
-        // ];
-    
-        // foreach ($users as $key => $user) {
-        //     User::create($user);
-        // }
-
         $users = json_decode(File::get("database/data/users.json"));
         foreach ($users as $key => $value) {
             User::create([
@@ -56,6 +41,20 @@ class DatabaseSeeder extends Seeder
                 "status" => $value->status,
                 "photo" => $value->photo,
             ]);
+        }
+
+        $careers = [
+            [
+                'user_id'=>11,
+                'position'=>'Programmer',
+                'rank'=>'Lead',
+                'start_date'=>'2020-03-22',
+                'end_date'=>'2025-11-27',
+            ],
+        ];
+    
+        foreach ($careers as $career) {
+            Career::create($career);
         }
 
         // $provinces = json_decode(File::get("database/data/provinces.json"));
