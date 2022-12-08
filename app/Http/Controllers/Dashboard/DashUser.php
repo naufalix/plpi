@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Meta;
-use App\Models\Province;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,11 +23,10 @@ class DashUser extends Controller
             return redirect('/dashboard/home')->with("info","Anda tidak punya akses");
         }
         $meta = Meta::$data_meta;
-        $meta['title'] = 'Dashboard | User';
+        $meta['title'] = 'Dashboard | Pengaturan User';
         return view('dashboard.user',[
             "meta" => $meta,
-            "provinces" => Province::all(),
-            "users" => User::with(['province'])->get(),
+            "users" => User::all(),
         ]);
     }
 

@@ -27,8 +27,8 @@ return new class extends Migration
             $table->string('status',50);
             $table->string('photo',50)->nullable();
             $table->rememberToken();
-            //$table->timestamp('email_verified_at')->nullable();
-            //$table->timestamps();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->timestamps();
         });
     }
 
