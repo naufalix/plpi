@@ -48,7 +48,7 @@
                   </div>
                 </div>
 
-                @if($auth->role=="superadmin")
+                @if(in_array("6", $previlege))
                 <div class="menu-item">
                   <a class="menu-link py-2" href="/dashboard/user">
                     <span class="menu-title">Pengaturan User</span>

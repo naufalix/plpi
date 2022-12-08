@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('birthday',50);
             $table->string('start_date',50);
             $table->string('end_date',50);
-            $table->string('role',50);
+            $table->string('previlege',50);
             $table->string('status',50);
             $table->string('photo',50)->nullable();
             $table->rememberToken();

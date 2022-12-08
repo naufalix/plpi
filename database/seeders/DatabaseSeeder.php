@@ -52,7 +52,7 @@ class DatabaseSeeder extends Seeder
                 "birthday" => $value->birthday,
                 "start_date" => $value->start_date,
                 "end_date" => $value->end_date,
-                "role" => $value->role,
+                "previlege" => $value->previlege,
                 "status" => $value->status,
                 "photo" => $value->photo,
             ]);

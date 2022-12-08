@@ -24,6 +24,7 @@
     </script>
     @php
       $auth = Auth::guard('user')->user();
+      $previlege = explode(",",$auth->previlege);
     @endphp
     <div class="d-flex flex-column flex-root">
       <div class="docs-page d-flex flex-row flex-column-fluid">
