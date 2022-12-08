@@ -27,6 +27,10 @@ class AuthController extends Controller
         ]);
 
         if(Auth::guard('user')->attempt($credentials)){
+            $status = Auth::guard('user')->user()->status;
+            if($status=="nonactive"){
+                return back()->with('error','Akun anda dinonaktifkan!');
+            }
             $request->session()->regenerate();
             return redirect()->intended('/dashboard/home');
         }
