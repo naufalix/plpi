@@ -154,8 +154,13 @@ class DashUser extends Controller
 
         //Check if the user is found
         if($user){
-            $logo_path = public_path().'/assets/img/user/'.$request->id.'.png';
-            unlink($logo_path);             // Delete photo
+            // Delete career
+            $user->career()->delete();
+            // Delete photo
+            if($user->photo){
+                $logo_path = public_path().'/assets/img/user/'.$user->photo;
+                unlink($logo_path);         // Delete photo
+            }
             User::destroy($request->id);    // Delete user
             return ['status'=>'success','message'=>'User berhasil dihapus'];
         }else{
