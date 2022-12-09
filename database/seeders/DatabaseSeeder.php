@@ -46,10 +46,17 @@ class DatabaseSeeder extends Seeder
         $careers = [
             [
                 'user_id'=>11,
-                'position'=>'Programmer',
+                'position'=>'Web Developer',
+                'rank'=>'Senior',
+                'start_date'=>'2020-11-22',
+                'end_date'=>'2022-11-21',
+            ],
+            [
+                'user_id'=>11,
+                'position'=>'Web Developer',
                 'rank'=>'Lead',
-                'start_date'=>'2020-03-22',
-                'end_date'=>'2025-11-27',
+                'start_date'=>'2022-11-22',
+                'end_date'=>'2025-11-21',
             ],
         ];
     
