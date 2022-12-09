@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Province;
 use App\Models\Career;
+use App\Models\Certification;
 use App\Models\User;
 use File;
 use Illuminate\Database\Seeder;
@@ -62,6 +63,25 @@ class DatabaseSeeder extends Seeder
     
         foreach ($careers as $career) {
             Career::create($career);
+        }
+
+        $certifications = [
+            [
+                'user_id'=>11,
+                'name'=>'Sertifikasi Web Developer',
+                'location'=>'Malang',
+                'issue_date'=>'2022-11-22',
+            ],
+            [
+                'user_id'=>12,
+                'name'=>'Sertifikasi Akuntan',
+                'location'=>'Surabaya',
+                'issue_date'=>'2023-11-22',
+            ],
+        ];
+    
+        foreach ($certifications as $cert) {
+            Certification::create($cert);
         }
 
         // $provinces = json_decode(File::get("database/data/provinces.json"));

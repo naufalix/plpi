@@ -28,6 +28,11 @@
                     <span class="menu-title">Data Karir</span>
                   </a>
                 </div>
+                <div class="menu-item">
+                  <a class="menu-link py-2" href="/dashboard/certification">
+                    <span class="menu-title">Data Sertifikasi</span>
+                  </a>
+                </div>
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                   <span class="menu-link py-2">
                     <span class="menu-title">Dropdown</span>

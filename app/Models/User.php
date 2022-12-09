@@ -30,4 +30,8 @@ class User extends Authenticatable
     public function career(){
         return $this->hasMany(Career::class);
     }
+
+    public function certification(){
+        return $this->hasMany(Certification::class);
+    }
 }
