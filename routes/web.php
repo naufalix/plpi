@@ -45,20 +45,6 @@ Route::group(['prefix'=> 'api'], function(){
     //Route::get('/', [DashHome::class, 'index']);
     Route::get('/users', [APIController::class, 'users']);
     Route::get('/user/{user:id}', [APIController::class, 'user']);
+    Route::get('/careers', [APIController::class, 'careers']);
+    Route::get('/career/{career:id}', [APIController::class, 'career']);
 });
-//Route::group(['middleware'=>['auth:admin']], function(){
-
-    // Route::get('/dev/', [AdminDashboard::class, 'index']);
-    // Route::get('/dev/dashboard', [AdminDashboard::class, 'index']);
-    // Route::get('/dev/city', [AdminCity::class, 'index']);
-    // Route::get('/dev/province', [AdminProvince::class, 'index']);
-    // Route::get('/dev/registration', [AdminRegistration::class, 'index']);
-    // Route::get('/dev/selection', [AdminSelection::class, 'index']);
-    // Route::get('/dev/university', [AdminUniversity::class, 'index']);
-  
-    // Route::post('/dev/city', [AdminCity::class, 'update']);
-    // Route::post('/dev/province', [AdminProvince::class, 'update']);
-    // Route::post('/dev/registration', [AdminRegistration::class, 'postHandler']);
-    // Route::post('/dev/selection', [AdminSelection::class, 'postHandler']);
-    // Route::post('/dev/university', [AdminUniversity::class, 'postHandler']);
-//});
