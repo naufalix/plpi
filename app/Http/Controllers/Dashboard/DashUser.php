@@ -154,12 +154,10 @@ class DashUser extends Controller
 
         //Check if the user is found
         if($user){
-            // Delete career
-            $user->career()->delete();
-            // Delete certification
-            $user->certification()->delete();
-            // Delete cooperation
-            $user->cooperation()->delete();
+            $user->career()->delete();          // Delete career
+            $user->certification()->delete();   // Delete certification
+            $user->cooperation()->delete();     // Delete cooperation
+            $user->transaction()->delete();     // Delete transaction
             // Delete photo
             if($user->photo){
                 $logo_path = public_path().'/assets/img/user/'.$user->photo;

@@ -10,6 +10,7 @@ use App\Http\Controllers\Dashboard\DashCertification;
 use App\Http\Controllers\Dashboard\DashCooperation;
 use App\Http\Controllers\Dashboard\DashHome;
 use App\Http\Controllers\Dashboard\DashUser;
+use App\Http\Controllers\Dashboard\DashTransaction;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,11 +40,13 @@ Route::group(['prefix'=> 'dashboard','middleware'=>['auth:user']], function(){
     Route::get('/certification', [DashCertification::class, 'index']);
     Route::get('/cooperation', [DashCooperation::class, 'index']);
     Route::get('/user', [DashUser::class, 'index']);
+    Route::get('/transaction', [DashTransaction::class, 'index']);
     
     Route::post('/career', [DashCareer::class, 'postHandler']);
     Route::post('/certification', [DashCertification::class, 'postHandler']);
     Route::post('/cooperation', [DashCooperation::class, 'postHandler']);
     Route::post('/user', [DashUser::class, 'postHandler']);
+    Route::post('/transaction', [DashTransaction::class, 'postHandler']);
 });
 
 // API
@@ -57,4 +60,6 @@ Route::group(['prefix'=> 'api'], function(){
     Route::get('/certification/{certification:id}', [APIController::class, 'certification']);
     Route::get('/cooperations', [APIController::class, 'cooperations']);
     Route::get('/cooperation/{cooperation:id}', [APIController::class, 'cooperation']);
+    Route::get('/transactions', [APIController::class, 'transactions']);
+    Route::get('/transaction/{transaction:id}', [APIController::class, 'transaction']);
 });

@@ -7,6 +7,7 @@ use App\Models\Province;
 use App\Models\Career;
 use App\Models\Certification;
 use App\Models\Cooperation;
+use App\Models\Transaction;
 use App\Models\User;
 use File;
 use Illuminate\Database\Seeder;
@@ -99,6 +100,16 @@ class DatabaseSeeder extends Seeder
         ];
         foreach ($cooperations as $co) {
             Cooperation::create($co);
+        }
+
+        $transactions = [
+            ['user_id'=>11, 'reception'=>100000, 'loan'=>100000, 'date'=>'2023-01-08'],
+            ['user_id'=>11, 'reception'=>220000, 'loan'=>120000, 'date'=>'2023-04-12'],
+            ['user_id'=>12, 'reception'=>135000, 'loan'=>140000, 'date'=>'2023-11-20'],
+            ['user_id'=>13, 'reception'=>330000, 'loan'=>800000, 'date'=>'2023-12-03'],
+        ];
+        foreach ($transactions as $tr) {
+            Transaction::create($tr);
         }
 
         // $provinces = json_decode(File::get("database/data/provinces.json"));

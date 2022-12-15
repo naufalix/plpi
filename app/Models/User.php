@@ -38,4 +38,8 @@ class User extends Authenticatable
     public function cooperation(){
         return $this->hasMany(Cooperation::class);
     }
+
+    public function transaction(){
+        return $this->hasMany(Transaction::class);
+    }
 }
