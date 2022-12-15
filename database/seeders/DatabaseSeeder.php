@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use App\Models\Province;
 use App\Models\Career;
 use App\Models\Certification;
+use App\Models\Cooperation;
 use App\Models\User;
 use File;
 use Illuminate\Database\Seeder;
@@ -60,7 +61,6 @@ class DatabaseSeeder extends Seeder
                 'end_date'=>'2025-11-21',
             ],
         ];
-    
         foreach ($careers as $career) {
             Career::create($career);
         }
@@ -79,9 +79,26 @@ class DatabaseSeeder extends Seeder
                 'issue_date'=>'2023-11-22',
             ],
         ];
-    
         foreach ($certifications as $cert) {
             Certification::create($cert);
+        }
+
+        $cooperations = [
+            [
+                'user_id'=>11,
+                'name'=>'Kerjasama 1',
+                'start_date'=>'2022-10-22',
+                'end_date'=>'2022-11-22',
+            ],
+            [
+                'user_id'=>12,
+                'name'=>'Kerjasama 2',
+                'start_date'=>'2022-02-22',
+                'end_date'=>'2022-04-23',
+            ],
+        ];
+        foreach ($cooperations as $co) {
+            Cooperation::create($co);
         }
 
         // $provinces = json_decode(File::get("database/data/provinces.json"));

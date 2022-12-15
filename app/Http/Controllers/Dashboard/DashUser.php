@@ -158,6 +158,8 @@ class DashUser extends Controller
             $user->career()->delete();
             // Delete certification
             $user->certification()->delete();
+            // Delete cooperation
+            $user->cooperation()->delete();
             // Delete photo
             if($user->photo){
                 $logo_path = public_path().'/assets/img/user/'.$user->photo;

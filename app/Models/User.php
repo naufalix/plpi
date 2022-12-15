@@ -34,4 +34,8 @@ class User extends Authenticatable
     public function certification(){
         return $this->hasMany(Certification::class);
     }
+
+    public function cooperation(){
+        return $this->hasMany(Cooperation::class);
+    }
 }
