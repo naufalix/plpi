@@ -30,7 +30,7 @@
                     <!--begin::Page title-->
                     <div class="docs-page-title d-flex flex-column flex-lg-row align-items-lg-center py-5 mb-lg-0" data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_docs_content_container', 'lg': '#kt_docs_header_title'}">
                       <!--begin::Title-->
-                      <h1 class="d-flex align-items-center text-dark my-1 fs-4">Documentation
+                      <h1 class="d-flex align-items-center text-dark my-1 fs-4">PLPI Dashboard
                       <a href="../dist/documentation/getting-started/changelog.html" class="badge fw-bold fs-9 px-2 ms-2 badge-white text-hover-primary shadow-sm">v1.0.0</a></h1>
                       <!--end::Title-->
                       <!--begin::Separator-->
@@ -257,7 +257,7 @@
                         <!--end::Menu separator-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-5">
-                          <a href="../dist/account/overview.html" class="menu-link px-5">My Profile</a>
+                          <a href="#" class="menu-link px-5">My Profile</a>
                         </div>
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
