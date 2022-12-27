@@ -13,6 +13,7 @@
     <script src="/assets/js/custom/documentation/documentation.js"></script>
     <script src="/assets/js/custom/documentation/search.js"></script>
     <script src="/assets/js/custom/authentication/sign-in/general.js"></script>
+    <script src="/assets/js/custom/printlaporan.js"></script>
     <!--end::Page Custom Javascript-->
     <script>
       $(document).ready(function () {
