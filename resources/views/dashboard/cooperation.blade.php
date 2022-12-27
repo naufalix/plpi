@@ -5,8 +5,9 @@
 <div>
   <!--begin::Heading-->
   <div class="col-12 d-flex">
-    <h1 class="anchor fw-bolder mb-5" id="striped-rounded-bordered">Data Kerjasama</h1>
-    <button class="ms-auto btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambah">Tambah kerjasama</button>
+    <h1 class="anchor fw-bolder mb-5 me-auto" id="striped-rounded-bordered">Data Kerjasama</h1>
+    <button class="btn btn-primary me-3" onClick="printlaporan('cooperation')">Print</button>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambah">Tambah kerjasama</button>
   </div>
   <!--end::Heading-->
   <!--begin::Block-->

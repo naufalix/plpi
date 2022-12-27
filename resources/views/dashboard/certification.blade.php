@@ -5,8 +5,9 @@
 <div>
   <!--begin::Heading-->
   <div class="col-12 d-flex">
-    <h1 class="anchor fw-bolder mb-5" id="striped-rounded-bordered">Data Sertifikasi</h1>
-    <button class="ms-auto btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambah">Tambah sertifikasi</button>
+    <h1 class="anchor fw-bolder mb-5 me-auto" id="striped-rounded-bordered">Data Sertifikasi</h1>
+    <button class="btn btn-primary me-3" onClick="printlaporan('certification')">Print</button>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambah">Tambah sertifikasi</button>
   </div>
   <!--end::Heading-->
   <!--begin::Block-->
