@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\APIController;
+use App\Http\Controllers\PrintController;
 // use App\Http\Controllers\HomeController;
 //use App\Http\Controllers\Admin\AdminDashboard;
 use App\Http\Controllers\Auth\AuthController;
@@ -62,4 +63,13 @@ Route::group(['prefix'=> 'api'], function(){
     Route::get('/cooperation/{cooperation:id}', [APIController::class, 'cooperation']);
     Route::get('/transactions', [APIController::class, 'transactions']);
     Route::get('/transaction/{transaction:id}', [APIController::class, 'transaction']);
+});
+
+// PRINT
+Route::group(['prefix'=> 'print'], function(){
+    Route::get('/user', [PrintController::class, 'user']);
+    Route::get('/career', [PrintController::class, 'career']);
+    Route::get('/certification', [PrintController::class, 'certification']);
+    Route::get('/cooperation', [PrintController::class, 'cooperation']);
+    Route::get('/transaction', [PrintController::class, 'transaction']);
 });
