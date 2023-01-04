@@ -50,12 +50,18 @@ class PrintController extends Controller
         ]);
     }
 
-    public function transaction(){
+    public function transaction(Request $request){
         $meta = Meta::$data_meta;
         $meta['title'] = 'Laporan Transaksi';
+        
+        $transactions = Transaction::with(['user'])->get();
+        if($request->user_id){
+            $transactions = Transaction::with(['user'])->where('user_id', '=', $request->user_id)->get();
+        }
+
         return view('print.transaction',[
             "meta" => $meta,
-            "transactions" => Transaction::with(['user'])->get()
+            "transactions" => $transactions
         ]);
     }
 }

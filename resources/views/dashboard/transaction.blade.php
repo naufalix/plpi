@@ -6,7 +6,7 @@
   <!--begin::Heading-->
   <div class="col-12 d-flex">
     <h1 class="anchor fw-bolder mb-5 me-auto" id="striped-rounded-bordered">Data Transaksi</h1>
-    <button class="btn btn-primary me-3" onClick="printlaporan('transaction')">Print</button>
+    <button class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#cetak">Print</button>
     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambah">Tambah transaksi</button>
   </div>
   <!--end::Heading-->
@@ -161,6 +161,41 @@
           <div class="modal-footer">
             <button type="reset" class="btn btn-light me-3" data-bs-dismiss="modal">Cancel</button>
             <button type="submit" class="btn btn-danger" name="submit" value="destroy">Delete</button>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" id="cetak">
+  <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Print Transaksi</h3>
+          <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+            <i class="bi bi-x-lg"></i>
+          </div>
+        </div>
+        <form class="form" method="post" action="">
+          @csrf
+          <div class="modal-body">
+            <div class="row g-9 mb-8">
+              <div class="col-12">
+                <label class="required fw-bold mb-2">Pilih Karyawan</label>
+                <select class="form-select form-select-solid" id="pui" name="user_id" tabindex="-1" aria-hidden="true" required>
+                  <option value="">Semua</option>
+                  @foreach ($users as $user)
+                    @if (!empty($user->transaction[0]))
+                      <option value="{{ $user->id }}">{{ $user->name }}</option>
+                    @endif
+                  @endforeach
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="reset" class="btn btn-light me-3" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onClick="printlaporan('transaction')">Print</button>
           </div>
         </form>
       </div>
