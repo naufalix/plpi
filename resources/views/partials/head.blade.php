@@ -39,7 +39,8 @@
     <script src="/assets/plugins/custom/sweetalert2/sweetalert2.all.min.js"></script>
 
     <style type="text/css">
-        .of-cover {object-fit: cover;}
-        .btn-sm {font-size: 6px !important; border-radius: 5px !important;}
         html{scroll-behavior:smooth}
+        .btn-sm {font-size: 6px !important; border-radius: 5px !important;}
+        .dt-buttons{display: none}
+        .of-cover {object-fit: cover;}
     </style>

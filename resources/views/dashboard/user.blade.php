@@ -4,10 +4,20 @@
 <!--begin::Section-->
 <div>
   <!--begin::Heading-->
-  <div class="col-12 d-flex">
-    <h1 class="anchor fw-bolder mb-5 me-auto" id="striped-rounded-bordered">Data User</h1>
-    <button class="btn btn-primary me-3" onClick="printlaporan('user')">Print</button>
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambah">Tambah User</button>
+  <div class="col-12 row m-0">
+    <div class="me-auto col-12 col-md-6">
+      <h1 class="anchor fw-bolder mb-5 me-auto" id="striped-rounded-bordered">Data User</h1>
+    </div>
+    <div class="d-flex col-12 col-md-6 p-0">
+      <div class="btn-group btn-group-sm me-3 ms-auto" role="group" aria-label="Small button group">
+        <button class="btn btn-primary px-2 ps-3" onClick="dataexport('copy')">Copy</button>
+        <button class="btn btn-primary px-2" onClick="dataexport('csv')">CSV</button>
+        <button class="btn btn-primary px-2" onClick="dataexport('excel')">Excel</button>
+        <button class="btn btn-primary px-2" onClick="dataexport('pdf')">PDF</button>
+        <button class="btn btn-primary px-2 pe-3" onClick="printlaporan('user')">Print</button>
+      </div>
+      <button class="btn btn-primary me-auto me-md-0" data-bs-toggle="modal" data-bs-target="#tambah">Tambah</button>
+    </div>
   </div>
   <!--end::Heading-->
   <!--begin::Block-->
@@ -42,7 +52,7 @@
             {{ $user->name }}  
           </td>
           <td>{{ $user->phone }}</td>
-          <td>{{ date_format($end_date,"d M Y") }}</td>
+          <td style="min-width: 130px;">{{ date_format($end_date,"d F Y") }}</td>
           <td>
             @if ($user->status=="active")
               <span class="badge badge-primary">{{ $user->status }}</span>

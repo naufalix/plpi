@@ -4,10 +4,20 @@
 <!--begin::Section-->
 <div>
   <!--begin::Heading-->
-  <div class="col-12 d-flex">
-    <h1 class="anchor fw-bolder mb-5 me-auto" id="striped-rounded-bordered">Data Kerjasama</h1>
-    <button class="btn btn-primary me-3" onClick="printlaporan('cooperation')">Print</button>
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambah">Tambah kerjasama</button>
+  <div class="col-12 row m-0">
+    <div class="me-auto col-12 col-md-6">
+      <h1 class="anchor fw-bolder mb-5 me-auto" id="striped-rounded-bordered">Data Kerjasama</h1>
+    </div>
+    <div class="d-flex col-12 col-md-6 p-0">
+      <div class="btn-group btn-group-sm me-3 ms-auto" role="group" aria-label="Small button group">
+        <button class="btn btn-primary px-2 ps-3" onClick="dataexport('copy')">Copy</button>
+        <button class="btn btn-primary px-2" onClick="dataexport('csv')">CSV</button>
+        <button class="btn btn-primary px-2" onClick="dataexport('excel')">Excel</button>
+        <button class="btn btn-primary px-2" onClick="dataexport('pdf')">PDF</button>
+        <button class="btn btn-primary px-2 pe-3" onClick="printlaporan('cooperation')">Print</button>
+      </div>
+      <button class="btn btn-primary me-auto me-md-0" data-bs-toggle="modal" data-bs-target="#tambah">Tambah</button>
+    </div>
   </div>
   <!--end::Heading-->
   <!--begin::Block-->
@@ -33,8 +43,8 @@
           <td>{{ $loop->iteration }}</td>
           <td style="min-width: 320px;">{{ $co->user->name }}  </td>
           <td style="min-width: 100px;"><span class="badge badge-primary">{{ $co->name }}</span></td>
-          <td>{{ date_format($start_date,"d F Y") }}</td>
-          <td>{{ date_format($end_date,"d F Y") }}</td>
+          <td style="min-width: 130px;">{{ date_format($start_date,"d F Y") }}</td>
+          <td style="min-width: 130px;">{{ date_format($end_date,"d F Y") }}</td>
           <td style="min-width: 100px;">
             <a href="#" class="btn btn-icon btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#edit" onclick="edit({{ $co->id }})"><i class="bi bi-pencil-fill"></i></a>
             <a href="#" class="btn btn-icon btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hapus" onclick="hapus({{ $co->id }})"><i class="bi bi-x-lg"></i></a>
