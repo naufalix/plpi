@@ -7,9 +7,11 @@ use App\Http\Controllers\PrintController;
 //use App\Http\Controllers\Admin\AdminDashboard;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dashboard\DashCareer;
+use App\Http\Controllers\Dashboard\DashCategory;
 use App\Http\Controllers\Dashboard\DashCertification;
 use App\Http\Controllers\Dashboard\DashCooperation;
 use App\Http\Controllers\Dashboard\DashHome;
+use App\Http\Controllers\Dashboard\DashProduct;
 use App\Http\Controllers\Dashboard\DashUser;
 use App\Http\Controllers\Dashboard\DashTransaction;
 
@@ -38,14 +40,18 @@ Route::group(['prefix'=> 'dashboard','middleware'=>['auth:user']], function(){
     Route::get('/', [DashHome::class, 'index']);
     Route::get('/home', [DashHome::class, 'index']);
     Route::get('/career', [DashCareer::class, 'index']);
+    Route::get('/category', [DashCategory::class, 'index']);
     Route::get('/certification', [DashCertification::class, 'index']);
     Route::get('/cooperation', [DashCooperation::class, 'index']);
+    Route::get('/product', [DashProduct::class, 'index']);
     Route::get('/user', [DashUser::class, 'index']);
     Route::get('/transaction', [DashTransaction::class, 'index']);
     
     Route::post('/career', [DashCareer::class, 'postHandler']);
+    Route::post('/category', [DashCategory::class, 'postHandler']);
     Route::post('/certification', [DashCertification::class, 'postHandler']);
     Route::post('/cooperation', [DashCooperation::class, 'postHandler']);
+    Route::post('/product', [DashProduct::class, 'postHandler']);
     Route::post('/user', [DashUser::class, 'postHandler']);
     Route::post('/transaction', [DashTransaction::class, 'postHandler']);
 });
@@ -61,6 +67,8 @@ Route::group(['prefix'=> 'api'], function(){
     Route::get('/certification/{certification:id}', [APIController::class, 'certification']);
     Route::get('/cooperations', [APIController::class, 'cooperations']);
     Route::get('/cooperation/{cooperation:id}', [APIController::class, 'cooperation']);
+    Route::get('/products', [APIController::class, 'products']);
+    Route::get('/product/{product:id}', [APIController::class, 'product']);
     Route::get('/transactions', [APIController::class, 'transactions']);
     Route::get('/transaction/{transaction:id}', [APIController::class, 'transaction']);
 });

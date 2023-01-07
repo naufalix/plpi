@@ -40,29 +40,29 @@
                 </div>
                 <div class="menu-item">
                   <a class="menu-link py-2" href="/dashboard/transaction">
-                    <span class="menu-title">Data Transaksi</span>
+                    <span class="menu-title">Data Koperasi</span>
                   </a>
                 </div>
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                   <span class="menu-link py-2">
-                    <span class="menu-title">Dropdown</span>
+                    <span class="menu-title">E-Commerce</span>
                     <span class="menu-arrow"></span>
                   </span>
                   <div class="menu-sub menu-sub-accordion">
                     <div class="menu-item">
-                      <a class="menu-link py-2" href="#">
+                      <a class="menu-link py-2" href="/dashboard/category">
                         <span class="menu-bullet">
                           <span class="bullet bullet-dot"></span>
                         </span>
-                        <span class="menu-title">Menu 1</span>
+                        <span class="menu-title">Kategori</span>
                       </a>
                     </div>
                     <div class="menu-item">
-                      <a class="menu-link py-2" href="#">
+                      <a class="menu-link py-2" href="/dashboard/product">
                         <span class="menu-bullet">
                           <span class="bullet bullet-dot"></span>
                         </span>
-                        <span class="menu-title">Menu 2</span>
+                        <span class="menu-title">Produk</span>
                       </a>
                     </div>
                   </div>
