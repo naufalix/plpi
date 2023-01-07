@@ -22,4 +22,7 @@ function dataexport(method){
   if(method=='pdf'){
     $('.buttons-pdf').click()
   }
+  if(method=='print'){
+    $('.buttons-print').click()
+  }
 }
