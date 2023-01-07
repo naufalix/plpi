@@ -5,8 +5,10 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Province;
 use App\Models\Career;
+use App\Models\Category;
 use App\Models\Certification;
 use App\Models\Cooperation;
+use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\User;
 use File;
@@ -66,6 +68,15 @@ class DatabaseSeeder extends Seeder
             Career::create($career);
         }
 
+        $categories = [
+            ['name'=>'Alat Penelitian',],
+            ['name'=>'Bahan Kimia',],
+            ['name'=>'Lain-lain',],
+        ];
+        foreach ($categories as $category) {
+            Category::create($category);
+        }
+
         $certifications = [
             [
                 'user_id'=>11,
@@ -100,6 +111,26 @@ class DatabaseSeeder extends Seeder
         ];
         foreach ($cooperations as $co) {
             Cooperation::create($co);
+        }
+
+        $products = [
+            [
+                'category_id'=>1,
+                'name'=>'Mikroskop',
+                'price' => '1234000',
+                'stock' => '5',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae viverra metus. Donec commodo nisi dolor, sed sodales sapien luctus eu.',
+            ],
+            [
+                'category_id'=>2,
+                'name'=>'Boraks',
+                'price' => '55000',
+                'stock' => '10',
+                'description' => 'Mauris commodo, nisi vel dapibus tristique, dolor ante viverra libero, quis semper dolor sapien non nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.'
+            ],
+        ];
+        foreach ($products as $product) {
+            Product::create($product);
         }
 
         $transactions = [
