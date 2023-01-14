@@ -2,7 +2,7 @@
 <html lang="en">
   <!--begin::Head-->
   <head>
-    @include('partials.head')
+    @include('partials.admin-head')
     <style>
       body{font-family: 'Arial'}
       td, th {border: 1px solid black !important; padding: 8px !important}
@@ -30,7 +30,7 @@
     
     @yield('content')
 
-    @include('partials.script')
+    @include('partials.admin-script')
   </body>
   <!--end::Body-->
 </html>

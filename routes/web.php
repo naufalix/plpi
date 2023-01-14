@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\APIController;
 use App\Http\Controllers\PrintController;
-// use App\Http\Controllers\HomeController;
-//use App\Http\Controllers\Admin\AdminDashboard;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dashboard\DashCareer;
 use App\Http\Controllers\Dashboard\DashCategory;
@@ -26,9 +26,12 @@ use App\Http\Controllers\Dashboard\DashTransaction;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index']);
+Route::get('/shop', [ShopController::class, 'index']);
 
 // DASHBOARD AUTH
 Route::get('/dashboard/login', [AuthController::class, 'index'])->name('login');

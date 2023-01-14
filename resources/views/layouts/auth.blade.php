@@ -2,7 +2,7 @@
 <html lang="en">
   <!--begin::Head-->
   <head>
-    @include('partials.head')
+    @include('partials.admin-head')
   </head>
   <!--end::Head-->
   <!--begin::Body-->
@@ -32,7 +32,7 @@
       <!--end::Svg Icon-->
     </div>
     <!--end::Scrolltop-->
-    @include('partials.script')
+    @include('partials.admin-script')
   </body>
   <!--end::Body-->
 </html>
