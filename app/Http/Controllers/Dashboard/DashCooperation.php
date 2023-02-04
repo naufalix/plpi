@@ -20,7 +20,7 @@ class DashCooperation extends Controller
     }
     
     public function index(){
-        if(!$this->previlege(6)){
+        if(!$this->previlege('A')){
             return redirect('/dashboard/home')->with("info","Anda tidak punya akses");
         }
         $meta = Meta::$data_meta;
@@ -29,6 +29,7 @@ class DashCooperation extends Controller
             "meta" => $meta,
             "cooperations" => Cooperation::with(['user'])->get(),
             "users" => User::all(),
+            "profil" => Auth::guard('user')->user(),
         ]);
     }
 

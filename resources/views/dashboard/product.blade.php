@@ -16,7 +16,9 @@
         <button class="btn btn-primary px-2" onClick="dataexport('pdf')">PDF</button>
         <button class="btn btn-primary px-2" onClick="dataexport('print')">Print</button>
       </div>
+      @if(in_array("6", explode(",",$profil->previlege)))          
       <button class="btn btn-primary me-auto me-md-0" data-bs-toggle="modal" data-bs-target="#tambah">Tambah</button>
+      @endif
     </div>
   </div>
   <!--end::Heading-->
@@ -30,7 +32,7 @@
           <th>Kategori</th>
           <th>Harga</th>
           <th>Stok</th>
-          <th>Action</th>
+          @if(in_array("6", explode(",",$profil->previlege)))  <th>Action</th> @endif
         </tr>
       </thead>
       <tbody>
@@ -52,11 +54,13 @@
           <td style="min-width: 100px;">{{ $pr->category->name }}</td>
           <td><span class="badge badge-primary">{{ $price }}</span></td>
           <td><span class="badge badge-success">{{ $pr->stock }}</span></td>
+          @if(in_array("6", explode(",",$profil->previlege))) 
           <td style="min-width: 100px;">
             <a href="#" class="btn btn-icon btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#edit" onclick="edit({{ $pr->id }})"><i class="bi bi-pencil-fill"></i></a>
             <a href="#" class="btn btn-icon btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#foto" onclick="foto({{ $pr->id }})"><i class="bi bi-image-fill"></i></a>
             <a href="#" class="btn btn-icon btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hapus" onclick="hapus({{ $pr->id }})"><i class="bi bi-x-lg"></i></a>
           </td>
+          @endif
         </tr>
         @endforeach
       </tbody>

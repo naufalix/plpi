@@ -21,7 +21,7 @@ class DashProduct extends Controller
     }
     
     public function index(){
-        if(!$this->previlege(6)){
+        if(!$this->previlege('A')){
             return redirect('/dashboard/home')->with("info","Anda tidak punya akses");
         }
         $meta = Meta::$data_meta;
@@ -30,6 +30,7 @@ class DashProduct extends Controller
             "meta" => $meta,
             "categories" => Category::all(),
             "products" => Product::with(['category'])->get(),
+            "profil" => Auth::guard('user')->user(),
         ]);
     }
 

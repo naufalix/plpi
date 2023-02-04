@@ -19,7 +19,7 @@ class DashCategory extends Controller
     }
     
     public function index(){
-        if(!$this->previlege(6)){
+        if(!$this->previlege('A')){
             return redirect('/dashboard/home')->with("info","Anda tidak punya akses");
         }
         $meta = Meta::$data_meta;
@@ -27,6 +27,7 @@ class DashCategory extends Controller
         return view('dashboard.category',[
             "meta" => $meta,
             "categories" => Category::all(),
+            "profil" => Auth::guard('user')->user(),
         ]);
     }
 }

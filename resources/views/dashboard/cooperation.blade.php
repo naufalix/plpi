@@ -16,7 +16,9 @@
         <button class="btn btn-primary px-2" onClick="dataexport('pdf')">PDF</button>
         <button class="btn btn-primary px-2 pe-3" onClick="printlaporan('cooperation')">Print</button>
       </div>
+      @if(in_array("6", explode(",",$profil->previlege)))          
       <button class="btn btn-primary me-auto me-md-0" data-bs-toggle="modal" data-bs-target="#tambah">Tambah</button>
+      @endif
     </div>
   </div>
   <!--end::Heading-->
@@ -30,7 +32,7 @@
           <th>Nama kerjasama</th>
           <th>Tanggal mulai</th>
           <th>Tanggal selesai</th>
-          <th>Action</th>
+          @if(in_array("6", explode(",",$profil->previlege)))  <th>Action</th> @endif
         </tr>
       </thead>
       <tbody>
@@ -45,10 +47,12 @@
           <td style="min-width: 100px;"><span class="badge badge-primary">{{ $co->name }}</span></td>
           <td style="min-width: 130px;">{{ date_format($start_date,"d F Y") }}</td>
           <td style="min-width: 130px;">{{ date_format($end_date,"d F Y") }}</td>
+          @if(in_array("6", explode(",",$profil->previlege))) 
           <td style="min-width: 100px;">
             <a href="#" class="btn btn-icon btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#edit" onclick="edit({{ $co->id }})"><i class="bi bi-pencil-fill"></i></a>
             <a href="#" class="btn btn-icon btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hapus" onclick="hapus({{ $co->id }})"><i class="bi bi-x-lg"></i></a>
           </td>
+          @endif
         </tr>
         @endforeach
       </tbody>
