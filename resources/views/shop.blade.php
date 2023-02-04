@@ -96,8 +96,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" id="modal-tocart" onclick="buy()">
-              <i class="fa fa-shopping-cart"></i> ke keranjang 
+            <button type="button" class="btn btn-success" id="modal-tocart" onclick="buy()">
+              <i class="fa fa-whatsapp"></i> Chat Whatsapp
             </button>
           </div>
         </div>
@@ -119,7 +119,7 @@
           style: 'currency',
           currency: 'IDR',
         }).replace(',00','');
-        stock = mydata.stock;
+        stock = parseInt(mydata.stock);
         price = mydata.price;
         if(mydata.image==''){mydata.image='not-available.jpg'}
         $("#pr-img").attr('src','/assets/img/product/'+mydata.image);
@@ -153,7 +153,7 @@
     let name = $("#pr-name").text();
     let phone = '6285234006051';
     let text = "Halo%20Admin%20PLPI%20Saya%20ingin%20membeli%20"+name+"%20sebanyak%20"+stock;
-    let url = 'https://web.whatsapp.com/send?phone='+phone+'&text='+text;
+    let url = 'https://api.whatsapp.com/send?phone='+phone+'&text='+text;
     window.open(url, '_blank').focus();
   }
   </script>
